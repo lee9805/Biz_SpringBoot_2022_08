@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>하하호호</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+  <h1>하하호호</h1>
+<form method="POST" class="w3-container">
+    <div>
+        <label class="w3-text-red">ISBN</label>
+        <input class="w3-input" name="isbn" placeholder="ISBN">
+    </div>
+    <div>
+        <label class="w3-text-red">도서명</label>
+        <input name="title" class="w3-input" placeholder="도서명">
+    </div>
+    <div>
+        <label class="w3-text-red">출판사</label>
+        <input name="comp" placeholder="출판사" class="w3-input">
+    </div>
+    <div>
+        <label class="w3-text-red">저자</label>
+        <input name="author" placeholder="저자" class="w3-input">
+    </div>
+    <div>
+        <label class="w3-text-red">출판일</label>
+        <input name="pubdate" placeholder="출판일" class="w3-input">
+    </div>
+    <div>
+        <label class="w3-text-red">정가</label>
+        <input name="price" placeholder="정가"
+               value="0" class="w3-input">
+    </div>
+    <button class="w3-button w3-red">저장</button>
+</form>
+<div class="w3-container">
+    <table class="w3-table books w3-table-all">
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>도서명</th>
+                <th>출판사</th>
+                <th>저자</th>
+                <th>출판일</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book:${BOOKS}" th:attr="data-isbn=${book.isbn}">
+                <td th:text="${book.isbn}">ISBN</td>
+                <td th:text="${book.title}">도서명</td>
+                <td th:text="${book.comp}">출판사</td>
+                <td th:text="${book.author}">저자</td>
+                <td th:text="${book.pubdate}">출판일</td>
+                <td th:text="${book.price}">가격</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded",()=>{
+        const books_table = document.querySelector("table.books")
+        books_table?.addEventListener("click",(e)=>{
+            const td = e.target
+            const tr = td.closest("TR")
+            const isbn = tr?.dataset.isbn
+            alert(isbn)
+        })
+    })
+</script>
+</body>
+</html>
